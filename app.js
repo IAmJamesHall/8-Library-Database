@@ -3,6 +3,7 @@ const routes = require('./routes/index');
 const books = require('./routes/books');
 
 const app = express();
+const path = require('path');
 
 // view engine (pug) setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,3 +34,5 @@ app.use((err, req, res, next) => {
    res.status(err.status || 500);
    res.render('error');
 })
+
+module.exports = app;

@@ -1,9 +1,8 @@
 'use strict';
 const Sequelize = require('sequelize');
-const moment = require('moment');
 
 module.exports = (sequelize) => {
-  class Book extends Sequelize.Model { };
+  class Book extends Sequelize.Model { }
   Book.init({
     title: {
       type: Sequelize.STRING,
@@ -21,8 +20,8 @@ module.exports = (sequelize) => {
         }
       }
     },
-    genre: Sequelize.STRING,
-    year: Sequelize.STRING
+    title: Sequelize.STRING, 
+    year: Sequelize.INTEGER
   }, { sequelize });
 
   return Book;
