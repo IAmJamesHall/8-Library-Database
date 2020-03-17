@@ -1,4 +1,7 @@
-/* pagination */
+/* Pagination:
+/* This code modified from one of my own Treehouse projects
+https://github.com/IAmJamesHall/Project2/blob/master/js/script.js
+*/
 
 document.addEventListener("DOMContentLoaded", () => {
   appendPageLinks(bookList);
