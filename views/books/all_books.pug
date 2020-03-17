@@ -1,0 +1,39 @@
+extends ../layout
+
+block content
+  h1 Books
+  p
+    a.button(href="/books/new") Create New Book
+  p
+    form(action="/books" method="get")
+      input(type="text" placeholder="Search for a book" name="searchQuery")
+      input.search(type="submit" value="Search")
+      a.button.search(href="/books/clearSearch") Clear search
+  table
+    thead
+      tr
+        th 
+          a(href=`/books?sortBy=title&direction=${headers.title.direction}`) Title    
+            if headers.title.arrow
+              i(class=`fa fa-chevron-circle-${headers.title.arrow}` aria-hidden='true')
+        th
+          a(href=`/books?sortBy=author&direction=${headers.author.direction}`) Author    
+            if headers.author.arrow
+              i(class=`fa fa-chevron-circle-${headers.author.arrow}` aria-hidden='true')
+        th 
+          a(href=`/books?sortBy=genre&direction=${headers.genre.direction}`) Genre    
+            if headers.genre.arrow
+              i(class=`fa fa-chevron-circle-${headers.genre.arrow}` aria-hidden='true')
+        th 
+          a(href=`/books?sortBy=year&direction=${headers.year.direction}`) Year    
+            if headers.year.arrow
+              i(class=`fa fa-chevron-circle-${headers.year.arrow}` aria-hidden='true')
+    tbody
+      for book in books
+        tr.book(onclick=`window.location='/books/${book.id}'`)
+          td= book.title
+          td= book.author
+          td= book.genre
+          td= book.year
+
+  script(src="/static/javascript/index.js")

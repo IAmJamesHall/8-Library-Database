@@ -1,0 +1,7 @@
+tr[onclick] {
+  cursor: pointer;
+}
+
+input.search, a.button.search {
+  margin-left: 20px;
+}

@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
         }
       }
     },
-    title: Sequelize.STRING, 
+    genre: Sequelize.STRING, 
     year: Sequelize.INTEGER
   }, { sequelize });
 

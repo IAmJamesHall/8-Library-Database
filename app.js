@@ -1,17 +1,25 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const routes = require('./routes/index');
 const books = require('./routes/books');
 
 const app = express();
 const path = require('path');
 
+
+
 // view engine (pug) setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// cookie parser
+app.use(cookieParser());
+
 //process incoming POST requests
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
+
+
 
 //set dir for static files
 app.use('/static', express.static(path.join(__dirname, 'public')));
