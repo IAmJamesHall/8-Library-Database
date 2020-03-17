@@ -8,6 +8,7 @@ const path = require('path');
 
 
 
+
 // view engine (pug) setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -40,7 +41,8 @@ app.use((err, req, res, next) => {
 
    // render the error page
    res.status(err.status || 500);
-   res.render('error');
+   console.log(res.locals.error)
+   res.render('error', { err });
 })
 
 module.exports = app;

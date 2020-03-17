@@ -97,7 +97,7 @@ router.get('/clearSearch', (req, res) => {
 
 /* GET new book form */
 router.get('/new', asyncHandler(async (req, res) => {
-  res.render('books/new_book', { title: "New Book" })
+  res.render('books/new_book', { title: "New Book", book: {}})
 }));
 
 
@@ -108,7 +108,7 @@ router.post('/new', asyncHandler(async (req, res) => {
     book = await Book.create(req.body);
     res.redirect('/books');
   } catch (error) {
-    if (error.name === "SequelizeValidationError") {
+    if (error.name === "SequelizeValidationError") { //if not all fields are valid
       console.log('seqvalErr')
       book = await Book.build(req.body);
       console.log(book.toJSON());
@@ -123,7 +123,12 @@ router.post('/new', asyncHandler(async (req, res) => {
 /* GET info for individual book */
 router.get('/:id', asyncHandler(async (req, res) => {
   const book = await Book.findByPk(req.params.id);
-  res.render("books/book_detail", { book });
+  if (!book) {
+    res.redirect('/books');
+  } else {
+    res.render("books/book_detail", { book });
+  }
+
 }));
 
 
@@ -132,7 +137,6 @@ router.post('/:id', asyncHandler(async (req, res) => {
   let book;
   try {
     book = await Book.findByPk(req.params.id)
-    console.log(book);
     if (book) {
       await book.update(req.body);
       res.redirect('/books')
